@@ -39,7 +39,7 @@ def check_baggage_allowance(ticket_string: str):
     """
     # TODO: Write your code here
     a, b, c, d, e = ticket_string.split("-")
-    print(a, b, c, d, e)
+    print(a, b, c, d)
     if a == "EC":
         return "Economy - 20kg"
     elif a == 'BS':
