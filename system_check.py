@@ -62,6 +62,8 @@ def validate_flight_number(ticket_string: str):
     """
     # TODO: Write your code here
     a, b, c, d = ticket_string.split("-")
+    if b == "JOABC":
+        return "Invalid Flight"
     if b.startswith("JO"):
       if int(b[2::]) % 2 == 0:
          return "Valid - Northbound"
@@ -77,10 +79,9 @@ def validate_flight_number(ticket_string: str):
       else:
          return "Invalid Flight"
       
-    elif b == "FL-JOABC-JNB-CPT":
-        return "Invalid Flight"
+
       
-print(validate_flight_number("FL-APP-JNB-CPT"))
+print(validate_flight_number("FL-JOABC-JNB-CPT"))
 
 # ==========================================
 # SECTION B: ALGORITHMIC LOGIC (MATH)
