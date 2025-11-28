@@ -18,7 +18,9 @@ def get_departure_airport(ticket_string: str):
     Flight Number (JO234) can vary in length. You must find it relative to the hyphens.
     """
     # TODO: Write your code here
-    pass
+    a, b, c, d, e = ticket_string.split("-")
+    return c
+print(get_departure_airport("FL-JO234-JNB-CPT-2023"))
 
 def check_baggage_allowance(ticket_string: str):
     """
@@ -36,7 +38,17 @@ def check_baggage_allowance(ticket_string: str):
     - For any other code: return "Standard - 0kg"
     """
     # TODO: Write your code here
-    pass
+    a, b, c, d, e = ticket_string.split("-")
+    print(a, b, c, d, e)
+    if a == "EC":
+        return "Economy - 20kg"
+    elif a == 'BS':
+        return "Business - 40kg"
+    elif a == 'FL':
+        return "First Class - 60kg"
+    else:
+        "Standard - 0kg"
+print(check_baggage_allowance("FL-JO234-JNB-CPT-2023"))
 
 def validate_flight_number(ticket_string: str):
     """
@@ -50,8 +62,23 @@ def validate_flight_number(ticket_string: str):
     - If the numeric part cannot be converted to a number, return "Invalid Flight"
     """
     # TODO: Write your code here
-    pass
-
+    a, b, c, d = ticket_string.split("-")
+    if b.startswith("JO"):
+      if int(b[2::]) % 2 == 0:
+         return "Valid - Northbound"
+      elif int(b[2::]) % 2 != 0:
+         return "Valid - Southbound"
+      else:
+         return "Invalid Flight"
+    elif b.startswith("A"):
+      if int(b[1::]) % 2 == 0:
+         return "Valid - Northbound"
+      elif int(b[1::]) % 2 != 0:
+         return "Valid - Southbound"
+      else:
+         return "Invalid Flight"
+      
+print(validate_flight_number("FL-A29-JNB-CPT"))
 
 # ==========================================
 # SECTION B: ALGORITHMIC LOGIC (MATH)
@@ -72,7 +99,15 @@ def is_leap_year(year: int):
     Return True or False (Boolean).
     """
     # TODO: Write your code here
-    pass
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return True
+    elif year % 4 == 0:
+        return True
+    else:
+        return False
+print(is_leap_year(1990))
 
 
 # ==========================================
@@ -105,4 +140,16 @@ def reactor_status(temp: int, radiation: int):
        - For all other cases: return "Normal Operation"
     """
     # TODO: Write your code here
-    pass
+    if temp <= 0 or radiation <= 0:
+        return "Sensor Error"
+    if (1000 <= temp <= 2000)  and radiation > 100:
+        return "WARNING"
+    if temp > 2000 or radiation > 500:
+        return "CRITICAL"
+    if temp < 500:
+        return "Maintenance Mode"
+    else:
+        return "Normal Operation"
+    
+    
+print(reactor_status(1500, 200))
